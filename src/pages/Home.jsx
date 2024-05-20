@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 // import bg fromj '../assets/bg.png';
 import bg from "../images/bg.png"
@@ -8,7 +8,22 @@ import logo from '../images/LOGO.png'
 
 const Home = () => {
 
-  console.log(supabase)
+  const [formData, setFormData] = useState({
+    emailAdd: '', password: ''
+  })
+
+  // console.log(formData)
+
+  function handleChange(event) {
+    setFormData((prevFormData)=> {
+      return{
+        ...prevFormData,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
+ 
+  // console.log(supabase)
 
   return (
     <main className={`bg-main-white`}>
@@ -42,14 +57,14 @@ const Home = () => {
               <div className={`flex flex-col gap-1 w-full font-poppins`}>
 
                 <label className={``}>Email</label>
-                <input placeholder='Email Address' className={`focus:outline-none rounded-sm border-black border-2 p-2 text-sm`} />
+                <input placeholder='Email Address' className={`focus:outline-none rounded-sm border-black border-2 p-2 text-sm`} name='emailAdd' onChange={handleChange} />
 
               </div>
 
               <div className={`flex flex-col gap-1 w-full`}>
 
                 <label className={``}>Password</label>
-                <input placeholder='Password' className={`focus:outline-none rounded-sm border-black border-2 p-2 text-sm`} />
+                <input placeholder='Password' name='password' onChange={handleChange} className={`focus:outline-none rounded-sm border-black border-2 p-2 text-sm`} />
 
               </div>
 
